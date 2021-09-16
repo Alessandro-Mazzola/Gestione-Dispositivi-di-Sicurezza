@@ -40,6 +40,8 @@ string TelecameraAllarmata::getNomeClasse(){
 	}
 
 string TelecameraAllarmata::toString() {
+	// chiamo quello di telecamera perchè TelecameraAllarmata non ha campi in più rispetto a
+	// telecamera poichè allarme non ha campi, ma solo metodi.
 	return Telecamera::toString();
 }
 

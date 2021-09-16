@@ -7,7 +7,7 @@
 
 #include <string>
 #include <iostream>
-
+#include <conio.h>
 using namespace std;
 
 #include "Telecamera.h"
