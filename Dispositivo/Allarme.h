@@ -10,22 +10,26 @@
 #include <string>
 using namespace std;
 
-#include "DispositivoSicurezza.h"
+#include "../Dispositivo/DispositivoSicurezza.h"
 
 class Allarme: virtual public DispositivoSicurezza {
 public:
 	string proprietario;
 
 public:
+	//costruttori (con overload costruttore) + distruttore
 	Allarme(string n, bool s, string c);
-	//overload costruttore
-	Allarme(string n, bool s, string c, string cost);
+	Allarme(string n, bool s, string c, string prop);
 	virtual ~Allarme();
+
+	//metodo che mi avvisa che l'allarme è scattato
 	void emettiSuono();
 	string getProprietario();
 
 	//override del metodo pure virtual
 	virtual string getNomeClasse();
+	virtual string toString();
+
 	static char getTipo();
 
 };

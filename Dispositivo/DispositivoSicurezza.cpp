@@ -5,12 +5,13 @@
  *      Author: alexm
  */
 
+#include "DispositivoSicurezza.h"
+
 #include <string>
 #include <vector>
 #include <list>
 #include <iostream>
 
-#include "DispositivoSicurezza.h"
 using namespace std;
 
 int DispositivoSicurezza::serialID = 0;
@@ -22,7 +23,7 @@ void DispositivoSicurezza::incrementaSerialID(){
 DispositivoSicurezza::DispositivoSicurezza(string n, bool s, string c, char cod){
 	incrementaSerialID();
 	ID = cod + to_string(serialID);
-	cout<<ID<<endl;
+	//cout<<ID<<endl;
 	nome = n;
 	statoDispositivo = s;
 	//cout<<statoDispositivo<<endl;
@@ -56,12 +57,15 @@ string DispositivoSicurezza::getCollocamento() const {
 string DispositivoSicurezza::getNome() const {
 	return this->nome;
 }
+string DispositivoSicurezza::getID() const{
+	return this->ID;
+}
 
-void DispositivoSicurezza::stampaStato(){
+string DispositivoSicurezza::stampaStato(){
 	if(this->statoDispositivo==true)
-			cout<<"Acceso"<<endl;
+			return "Acceso";
 		else
-			cout<<"Spento"<<endl;
+			return "Spento";
 }
 
 

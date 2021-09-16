@@ -10,21 +10,31 @@
 
 #include <string>
 
-#include "Telecamera.h"
-#include "Allarme.h"
 #include "String.h"
+
+#include "Allarme.h"
+#include "Telecamera.h"
 using namespace std;
 
 class TelecameraAllarmata : public Telecamera, public Allarme
 {
 public:
-	TelecameraAllarmata();
+	TelecameraAllarmata(string n, bool s, string c, int costo, string modello);
 	~TelecameraAllarmata();
+
+	// metodo che controlla il campo rilevaMovimento, se è a true fa partire l'allarme
 	void Controllo();
 	string getProduttoreTA();
-	//metodo override
+
+	//implemento metodo astratto super classe
 	string getNomeClasse();
+	string toString();
+
+
+	static char getTipo();
+
 };
+
 
 
 

@@ -19,6 +19,7 @@ public:
 	Produttore(int c, string m);
 	virtual ~Produttore();
 	string getModello();
+	friend class SensoreRaggInfrarossi;
 
 };
 #endif

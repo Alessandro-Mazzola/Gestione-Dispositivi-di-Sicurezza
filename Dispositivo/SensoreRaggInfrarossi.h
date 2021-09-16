@@ -11,6 +11,7 @@
 using namespace std;
 
 #include "DispositivoSicurezza.h"
+#include "Produttore.h"
 
 class SensoreRaggInfrarossi: public DispositivoSicurezza {
 private:
@@ -24,9 +25,13 @@ public:
 	virtual ~SensoreRaggInfrarossi();
 	bool getCheck();
 	void setCheck();
-	void stampaCheck();
+	string stampaCheck();
 	//override del metodo purevirtual
-	string getNomeClasse();
+	virtual string getNomeClasse();
+	virtual string toString();
+
+	//metodo che chiama un campo della classe Produttore
+	string stampaModelloProduttore(const Produttore &p);
 
 	static char getTipo();
 

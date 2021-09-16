@@ -5,12 +5,24 @@
  *      Author: alexm
  */
 
+#include "../Dispositivo/TelecameraAllarmata.h"
+
 #include <string>
 #include <iostream>
 
-#include "TelecameraAllarmata.h"
 #include "Telecamera.h"
 using namespace std;
+
+
+TelecameraAllarmata::TelecameraAllarmata(string n, bool s, string c, int costo, string modello):
+		Telecamera(n, s, c, costo, modello), Allarme(n, s, c),
+		DispositivoSicurezza(n,s,c,TelecameraAllarmata::getTipo()){
+
+}
+
+TelecameraAllarmata::~TelecameraAllarmata(){
+	//cout<<"Distruggo: "<<this->getNome()<<" ..."<<endl;
+}
 
 void TelecameraAllarmata::Controllo(){
 }
@@ -27,7 +39,14 @@ string TelecameraAllarmata::getNomeClasse(){
 		return Telecamera::getNomeClasse();
 	}
 
+string TelecameraAllarmata::toString() {
+	return Telecamera::toString();
+}
 
+
+char TelecameraAllarmata::getTipo() {
+	return 'p';
+}
 
 
 

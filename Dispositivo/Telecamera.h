@@ -22,22 +22,28 @@ private:
 
 
 public:
+	// costruttori (con overload del costruttore) + distruttore
 	Telecamera(string n, bool s, string c, int costo, string modello);
-	// overload del costruttore
-	Telecamera(string id, string n, bool s, string c, Posizione pos, int costo, string modello);
-	Telecamera(string id, string n, bool s, string c, Posizione pos, string pro, int costo, string modello);
-
+	Telecamera(string n, bool s, string c, Posizione pos, int costo, string modello);
+	Telecamera(string n, bool s, string c, Posizione pos, string pro, int costo, string modello);
 	virtual ~Telecamera();
-	string getPosizione();
+
+	//metodi che modificano campi ella classe
+	void setRilevaMovimento();
 	void setPosizione();
+
+	string getPosizione();
 	bool getRilevaMovimento();
 	string getProprietario();
+	string stampaRilevaMovimento();
 
 	//metodo reso pubblico dopo aver ereditato la classe in modo privato
 	using Produttore::getModello;
 
 	//override del metodo purevirtual
 	virtual string getNomeClasse();
+	virtual string toString();
+
 	static char getTipo();
 
 
