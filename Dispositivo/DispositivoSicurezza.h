@@ -19,6 +19,7 @@ private:
 	bool statoDispositivo;
 	string collocamento;
 	char codice;
+	bool rilevaMovimento;
 
 
 public:
@@ -27,15 +28,18 @@ public:
 	virtual ~DispositivoSicurezza();
 	void accendi();
 	void spegni();
+	void setRilevaMovimento();
 	// ritorna i campi dichiarati private
 	bool getStatoDispositivo() const;
+	bool getRilevaMovimento() const;
+
 	string getCollocamento() const;
 	string getNome() const;
 	string getID() const;
 
 	//stampa lo stato del dispositivo
 	string stampaStato();
-
+	string stampaRilevaMovimento();
 	//metodo pure virutal
 	virtual string getNomeClasse()=0;
 	virtual string toString() = 0;

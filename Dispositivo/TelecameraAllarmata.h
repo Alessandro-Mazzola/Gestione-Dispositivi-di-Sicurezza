@@ -25,6 +25,7 @@ public:
 	// metodo che controlla il campo rilevaMovimento, se è a true fa partire l'allarme
 	void Controllo();
 	string getProduttoreTA();
+	string getProprietarioTA();
 
 	//implemento metodo astratto super classe
 	string getNomeClasse();

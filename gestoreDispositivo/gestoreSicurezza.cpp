@@ -6,11 +6,11 @@
  */
 
 #include "gestoreDispositivo.h"
-#include "../Dispositivo/Allarme.h"
-#include "../Dispositivo/SensoreRaggInfrarossi.h"
-#include "../Dispositivo/Telecamera.h"
-#include "../Dispositivo/TelecameraAllarmata.h"
-#include "../Dispositivo/DispositivoSicurezza.h"
+//#include "../Dispositivo/Allarme.h"
+//#include "../Dispositivo/SensoreRaggInfrarossi.h"
+//#include "../Dispositivo/Telecamera.h"
+//#include "../Dispositivo/TelecameraAllarmata.h"
+//#include "../Dispositivo/DispositivoSicurezza.h"
 
 #include <vector>
 #include <algorithm>
@@ -18,9 +18,10 @@
 #include <iostream>
 using namespace std;
 
-GestoreSicurezza::GestoreSicurezza() {}
+GestoreSicurezza::GestoreSicurezza() {
+}
 
-GestoreSicurezza& GestoreSicurezza::instance(){
+GestoreSicurezza& GestoreSicurezza::instance() {
 	//istanziazione
 	static GestoreSicurezza INSTANCE;
 	return INSTANCE;
@@ -33,82 +34,86 @@ vector<DispositivoSicurezza*> GestoreSicurezza::getvettDispositivi() {
 	return vettDispositivi;
 }
 
+
+DispositivoSicurezza* GestoreSicurezza::cercaOggetto(string s){
+	DispositivoSicurezza* temp;
+	for (std::vector<DispositivoSicurezza*>::iterator it = vettDispositivi.begin(); it != vettDispositivi.end(); ++it)
+			if ((*it)->getID() == s)
+				temp = *it;
+			return temp;
+}
+
 void GestoreSicurezza::aggiungiDispositivo(DispositivoSicurezza *d) {
 	vettDispositivi.push_back(d);
 }
 
 void GestoreSicurezza::rimuoviDispositivoID(string s) {
-	for (std::vector<DispositivoSicurezza*>::iterator it = vettDispositivi.begin(); it != vettDispositivi.end(); ++it) {
-		int index = distance(vettDispositivi.begin(), it);
-		if (vettDispositivi.at(index)->getID() == s) {
-			vettDispositivi.erase(it);
-			cout << s << " corretamente elimianto!" << endl;
-		}
+	vector<DispositivoSicurezza*>::iterator i = find(vettDispositivi.begin(),vettDispositivi.end(), cercaOggetto(s));
+	if(i!=vettDispositivi.end()){
+		delete(*i);
+		vettDispositivi.erase(i);
 	}
+	else
+		cout<<"**errore, dispositivo non trovato**"<<endl;
 }
 
 void GestoreSicurezza::rimuoviDispositivo(DispositivoSicurezza *d) {
-	vector<DispositivoSicurezza*>::iterator i = find(vettDispositivi.begin(), vettDispositivi.end(), d);
-	vettDispositivi.erase(i);
+	vector<DispositivoSicurezza*>::iterator i = find(vettDispositivi.begin(),vettDispositivi.end(), d);
+	if(i!=vettDispositivi.end()){
+			delete(*i);
+			vettDispositivi.erase(i);
+	}
+	else
+			cout<<"**errore: dispositivo non trovato**"<<endl;
 }
 
 void GestoreSicurezza::accendiDispositivo(string s) {
-	for (std::vector<DispositivoSicurezza*>::iterator it = vettDispositivi.begin(); it != vettDispositivi.end(); ++it) {
-				int index = distance(vettDispositivi.begin(), it);
-				if (vettDispositivi.at(index)->getID() == s)
-					vettDispositivi.at(index)->accendi();
-			}
+	vector<DispositivoSicurezza*>::iterator i = find(vettDispositivi.begin(),vettDispositivi.end(), cercaOggetto(s));
+			(*i)->accendi();
 }
 
 void GestoreSicurezza::SpegniDispositivo(string s) {
-	for (std::vector<DispositivoSicurezza*>::iterator it = vettDispositivi.begin(); it != vettDispositivi.end(); ++it) {
-			int index = distance(vettDispositivi.begin(), it);
-			if (vettDispositivi.at(index)->getID() == s)
-				vettDispositivi.at(index)->spegni();
-		}
+	vector<DispositivoSicurezza*>::iterator i = find(vettDispositivi.begin(),vettDispositivi.end(), cercaOggetto(s));
+			(*i)->spegni();
 }
+
+void GestoreSicurezza::SegnalaMovimento(string s){
+	vector<DispositivoSicurezza*>::iterator i = find(vettDispositivi.begin(),vettDispositivi.end(), cercaOggetto(s));
+		if((*i)->getStatoDispositivo())
+			(*i)->setRilevaMovimento();
+		else
+			cout<<"** è necessario accendere il dispositivo!**"<<endl;
+
+}
+
 
 void GestoreSicurezza::spegniDispositivi() {
 	for (std::vector<DispositivoSicurezza*>::iterator it = vettDispositivi.begin(); it != vettDispositivi.end(); ++it) {
-			int index = distance(vettDispositivi.begin(), it);
-			vettDispositivi.at(index)->spegni();
-		}
+		(*it)->spegni();
+	}
 
 }
 
 void GestoreSicurezza::stampaDispositiviTotali() {
-	for (std::vector<DispositivoSicurezza*>::iterator it =
-			vettDispositivi.begin(); it != vettDispositivi.end(); ++it) {
-		int index = distance(vettDispositivi.begin(), it);
-		cout << vettDispositivi.at(index)->toString() << endl;
+	for (std::vector<DispositivoSicurezza*>::iterator it = vettDispositivi.begin(); it != vettDispositivi.end(); ++it)
+		cout << (*it)->toString() << endl << endl;
+}
+
+void GestoreSicurezza::stampaDispositiviAccesi() {
+	for (std::vector<DispositivoSicurezza*>::iterator it = vettDispositivi.begin(); it != vettDispositivi.end(); ++it) {
+		if ((*it)->getStatoDispositivo())
+			cout << (*it)->toString() << endl << endl;
 	}
 }
 
-void GestoreSicurezza::stampaDispositiviAccesi(){
-	for (std::vector<DispositivoSicurezza*>::iterator it =
-				vettDispositivi.begin(); it != vettDispositivi.end(); ++it) {
-			int index = distance(vettDispositivi.begin(), it);
-			if(vettDispositivi.at(index)->getStatoDispositivo())
-				cout << vettDispositivi.at(index)->toString() << endl;
+// metodi che vanno a chiamare i metodi dei vari dispositivi di sicurezza
+
+void GestoreSicurezza::AemettiSuono(string s){
+	vector<DispositivoSicurezza*>::iterator i = find(vettDispositivi.begin(),vettDispositivi.end(), cercaOggetto(s));
+		if ((*i)->getStatoDispositivo()){
+			Allarme* temp = dynamic_cast<Allarme*>(*i);
+				temp->emettiSuono();
 		}
-}
-
-void GestoreSicurezza::TsetPosizione(string s){
-	for (std::vector<DispositivoSicurezza*>::iterator it = vettDispositivi.begin(); it != vettDispositivi.end(); ++it) {
-				int index = distance(vettDispositivi.begin(), it);
-				//come faccio a fare il cast?
-				//static_cast<Telecamera*>(&(vettDispositivi.at(index)))->setPosizione;
-			}
-}
-
-
-// ----- MENU ------
-Menu::Menu() {
-	scelta = 0;
-}
-
-Menu::~Menu() {
-}
-
-string Menu::showMenu() {
-}
+		else
+			cout<<"**errore: dispositivo non trovato, oppure dispositivo spento**"<<endl;
+	}

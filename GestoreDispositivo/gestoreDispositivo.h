@@ -19,7 +19,6 @@ using namespace std;
 
 class GestoreSicurezza {
 private:
-	int scelta;
 	vector<DispositivoSicurezza*> vettDispositivi;
 	GestoreSicurezza();
 
@@ -36,37 +35,27 @@ public:
 
 	vector<DispositivoSicurezza*> getvettDispositivi();
 
+	DispositivoSicurezza* cercaOggetto(string s);
+
 	void aggiungiDispositivo(DispositivoSicurezza *d);
 	void rimuoviDispositivoID(string s);
 	void rimuoviDispositivo(DispositivoSicurezza *d);
 
 	void accendiDispositivo(string s);
 	void SpegniDispositivo(string s);
+
+	void SegnalaMovimento(string s);
+
+
 	void spegniDispositivi();
 	void stampaDispositiviTotali();
 	void stampaDispositiviAccesi();
 
-	// da qui in poi ridefinisco i metodi già creati in Dispositivo. Quello che devo fare è andare a cercare nel vettore dispositivo
-	// corretto e chiamare il metodo base
-	void TsetPosizione(string s);
-	void TsetRilevMovimento(string s);
-	void Asuona(string s);
-	void SgetCheck(string s);
-	void TAcontrollo(string s);
+	//vado a chiamare un metodo che esiste solo in allarme tramite il cast dinamico
+	void AemettiSuono(string s);
 
 
 
-
-};
-
-class Menu {
-private:
-	int scelta;
-public:
-	//costruttore e distruttore
-	Menu();
-	virtual ~Menu();
-	string showMenu();
 
 };
 

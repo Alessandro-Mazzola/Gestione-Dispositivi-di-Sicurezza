@@ -23,8 +23,8 @@ public:
 	virtual ~Allarme();
 
 	//metodo che mi avvisa che l'allarme è scattato
-	void emettiSuono();
 	string getProprietario();
+	void emettiSuono();
 
 	//override del metodo pure virtual
 	virtual string getNomeClasse();

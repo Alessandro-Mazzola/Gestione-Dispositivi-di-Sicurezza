@@ -32,17 +32,28 @@ void TelecameraAllarmata::Controllo(){
 string TelecameraAllarmata::getProduttoreTA(){
 	return Telecamera::getProprietario();
 }
+string TelecameraAllarmata::getProprietarioTA(){
+	return Allarme::getProprietario();
+}
 
 //override del metodo purevirtual
 // devo chiamarlo anche qui perchè altrimenti avrei name clash
 string TelecameraAllarmata::getNomeClasse(){
-		return Telecamera::getNomeClasse();
+		return "TelecameraAllarmata";
 	}
 
 string TelecameraAllarmata::toString() {
-	// chiamo quello di telecamera perchè TelecameraAllarmata non ha campi in più rispetto a
-	// telecamera poichè allarme non ha campi, ma solo metodi.
-	return Telecamera::toString();
+	return TelecameraAllarmata::getNomeClasse() + ":  " + this->getID()
+						+ "\nNome:                 " + this->getNome()
+						+ "\nStato Dispositivo:    " + this->stampaStato()
+						+ "\nCollocamento:         " + this->getCollocamento()
+						+ "\nPoszione:             " + getPosizione()
+						+ "\nControllo telecamera: " + this->stampaRilevaMovimento()
+						+ "\nModello:              " + getModello()
+						+ "\nProprietario:         " + getProprietarioTA();
+						+ "\nProduttore:           " + getProduttoreTA();
+
+			;
 }
 
 

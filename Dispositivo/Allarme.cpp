@@ -21,15 +21,12 @@ Allarme::Allarme(string n, bool s, string c, string prop) :
 	proprietario = prop;
 }
 
-Allarme::~Allarme() {
-	//cout<<"Distruggo: "<<this->getNome()<<" ..."<<endl;
+void Allarme::emettiSuono(){
+	cout<<"*!*!*!*STO SUONANDO*!*!*!*!*!*"<<endl;
 }
 
-void Allarme::emettiSuono() {
-	if (this->getStatoDispositivo())
-		cout << "BEEEP!! BEEP!!" << endl;
-	else
-		cout << this->getNome() << " spento. NEcessario accenderlo!" << endl;
+Allarme::~Allarme() {
+	//cout<<"Distruggo: "<<this->getNome()<<" ..."<<endl;
 }
 
 string Allarme::getProprietario() {
@@ -45,7 +42,8 @@ string Allarme::toString() {
 			+ "\nNome:              " + this->getNome()
 			+ "\nStato Dispositivo: " + this->stampaStato()
 			+ "\nCollocamento:      " + this->getCollocamento()
-			+ "\nProprietario:      "+ proprietario;
+			+ "\nControllo allarme: " + this->stampaRilevaMovimento()
+			+ "\nProprietario:      "+ getProprietario();
 }
 
 char Allarme::getTipo() {

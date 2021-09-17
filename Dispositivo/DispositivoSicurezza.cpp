@@ -29,24 +29,35 @@ DispositivoSicurezza::DispositivoSicurezza(string n, bool s, string c, char cod)
 	//cout<<statoDispositivo<<endl;
 	collocamento = c;
 	//cout<<collocamento<<endl;
+	rilevaMovimento = false;
 }
 DispositivoSicurezza::~DispositivoSicurezza(){}
 
 void DispositivoSicurezza::accendi(){
 	if(this->statoDispositivo)
-		cout<<"Dispositivo già acceso!"<<endl;
+		cout<<"**Dispositivo già acceso!**"<<endl;
 	else
 		this->statoDispositivo = true;
 }
 
 void DispositivoSicurezza::spegni(){
 	if(!this->statoDispositivo)
-			cout<<"Dispositivo già spento!"<<endl;
+			cout<<"**Dispositivo già spento!**"<<endl;
 		else
 			this->statoDispositivo = false;
 }
+void DispositivoSicurezza::setRilevaMovimento(){
+	if(statoDispositivo)
+		rilevaMovimento = !rilevaMovimento;
+	else
+		cout<<"Dispositivo spento"<<endl;
+}
 
 bool DispositivoSicurezza::getStatoDispositivo() const {
+	return this->statoDispositivo;
+}
+
+bool DispositivoSicurezza::getRilevaMovimento() const {
 	return this->statoDispositivo;
 }
 
@@ -68,6 +79,12 @@ string DispositivoSicurezza::stampaStato(){
 			return "Spento";
 }
 
+string DispositivoSicurezza::stampaRilevaMovimento(){
+	if(this->rilevaMovimento==true)
+			return "Violazione";
+		else
+			return "Nessuna violazione";
+}
 
 
 
