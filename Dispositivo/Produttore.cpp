@@ -11,8 +11,8 @@
 #include <iostream>
 
 using namespace std;
-
-Produttore::Produttore(int c, string m):costo(c),modello(m) {}
+//utilizzo di initializer list e campo facoltativo
+Produttore::Produttore(int c, string m, bool e):costo(c),modello(m),exist(e) {}
 
 Produttore::~Produttore(){
 

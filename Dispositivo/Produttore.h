@@ -14,9 +14,10 @@ class Produttore {
 private:
 	int costo;
 	string modello;
+	bool exist;
 
 public:
-	Produttore(int c, string m);
+	Produttore(int c, string m, bool e=true);
 	virtual ~Produttore();
 	string getModello();
 	friend class SensoreRaggInfrarossi;
