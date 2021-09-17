@@ -41,6 +41,8 @@ public:
 	void caso7();
 	void caso8();
 	void caso9();
+	void caso10();
+
 
 	void stampaInizio();
 

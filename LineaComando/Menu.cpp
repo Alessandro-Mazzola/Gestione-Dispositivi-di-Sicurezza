@@ -36,8 +36,9 @@ bool Menu::getnext() {
 
 void Menu::showMenu() {
 	while (next) {
-		cout << "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n";
+		cout << "\n\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n";
 		cout << "%%%                                               %%%\n";
+		cout << "%%%     0) uscita dal progrmma                    %%%\n";
 		cout << "%%%     1) Aggiungere un dispositivo.             %%%\n";
 		cout << "%%%     2) Rimuovi un dispositvo.                 %%%\n";
 		cout << "%%%     3) Stampare lista dispositivi.            %%%\n";
@@ -47,7 +48,7 @@ void Menu::showMenu() {
 		cout << "%%%     7) Spegni tutti i dispositivi.            %%%\n";
 		cout << "%%%     8) Simula movimento.                      %%%\n";
 		cout << "%%%     9) Simula suono Allarme                   %%%\n";
-		cout << "%%%     0) uscita dal progrmma                    %%%\n";
+		cout << "%%%     10) Inserisco dati fittizzi               %%%\n";
 		cout << "%%%                                               %%%\n";
 		cout << "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n";
 
@@ -85,6 +86,9 @@ void Menu::showMenu() {
 			break;
 		case 9:
 			caso9();
+			break;
+		case 10:
+			caso10();
 			break;
 		default:
 			cout<<"**errore: scelta non valida**";
@@ -150,6 +154,8 @@ void Menu::caso2() {
 	cout <<"Inserire ID del dispositivo da rimuovere (se non si ricorda l'ID faccia prima una stampa) : ";
 	cin>> id;
 	GestoreSicurezza::instance().rimuoviDispositivoID(id);
+	cout<<"\n\n--->Dispositivo "<<id<<" elimato correttamente!\n\n";
+
 
 }
 
@@ -165,17 +171,21 @@ void Menu::caso5() {
 	cout<<"Inserire ID del dispositivo da accendere (se non si ricorda l'ID faccia prima una stampa) : ";
 	cin>>id;
 	GestoreSicurezza::instance().accendiDispositivo(id);
+	cout<<"\n\n--->Dispositivo "<<id<<" acceso correttamente!\n\n";
+
 }
 
 void Menu::caso6() {
 	cout<<"Inserire ID del dispositivo da spegnere (se non si ricorda l'ID faccia prima una stampa) : ";
 	cin>>id;
 	GestoreSicurezza::instance().SpegniDispositivo(id);
+
 }
 
 void Menu::caso7() {
 	cout<<"Spengo tutti i dispositivi...";
 	GestoreSicurezza::instance().spegniDispositivi();
+
 }
 
 void Menu::caso8() {
@@ -188,6 +198,22 @@ void Menu::caso9() {
 	cout<<"Quale suono allarme vuoi simulare? (se non si ricorda l'ID faccia prima una stampa)";
 	cin>>id;
 	GestoreSicurezza::instance().AemettiSuono(id);
+}
+
+void Menu::caso10() {
+	cout<<"Sto inventando nuovi dispositivi.."<<endl;
+	temp = new SensoreRaggInfrarossi("Sesnore1", true, "Cucina", 10.0);
+	GestoreSicurezza::instance().aggiungiDispositivo(temp);
+	temp = new Allarme("Allarme1", true, "camera1");
+	GestoreSicurezza::instance().aggiungiDispositivo(temp);
+	temp = new TelecameraAllarmata("TelAll1", false, "Sala", 10, "goPro");
+	GestoreSicurezza::instance().aggiungiDispositivo(temp);
+	temp = new Telecamera("telecamera1", true, "Box", 10, "Sony");
+	GestoreSicurezza::instance().aggiungiDispositivo(temp);
+	cout<<"Ecco i dispositivi aggiunti: ";
+	Menu::caso3();
+
+
 }
 
 void Menu::stampaInizio(){

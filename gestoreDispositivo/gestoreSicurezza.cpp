@@ -97,12 +97,16 @@ void GestoreSicurezza::spegniDispositivi() {
 void GestoreSicurezza::stampaDispositiviTotali() {
 	for (std::vector<DispositivoSicurezza*>::iterator it = vettDispositivi.begin(); it != vettDispositivi.end(); ++it)
 		cout << (*it)->toString() << endl << endl;
+		cout<<"----------------------------------------------------"<<endl;
 }
 
 void GestoreSicurezza::stampaDispositiviAccesi() {
 	for (std::vector<DispositivoSicurezza*>::iterator it = vettDispositivi.begin(); it != vettDispositivi.end(); ++it) {
-		if ((*it)->getStatoDispositivo())
+		if ((*it)->getStatoDispositivo()){
 			cout << (*it)->toString() << endl << endl;
+			cout<<"----------------------------------------------------"<<endl;
+		}
+
 	}
 }
 
