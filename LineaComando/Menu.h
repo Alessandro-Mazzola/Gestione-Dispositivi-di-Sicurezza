@@ -31,7 +31,7 @@ public:
 	Menu();
 	virtual ~Menu();
 	bool getnext();
-	string showMenu();
+	void showMenu();
 	void caso1();
 	void caso2();
 	void caso3();
@@ -41,6 +41,8 @@ public:
 	void caso7();
 	void caso8();
 	void caso9();
+
+	void stampaInizio();
 
 
 

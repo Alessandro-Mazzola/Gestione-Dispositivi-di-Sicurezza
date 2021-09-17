@@ -106,8 +106,9 @@ int main() {
 	 */
 
 	Menu m1 = Menu();
+	m1.stampaInizio();
 	m1.showMenu();
-	cout << "sono uscito";
+	cout << "\n\nCHIUSURA PROGRAMMA....";
 
 	return 0;
 }

@@ -7,9 +7,14 @@
 
 #include <iostream>
 #include <string>
+#include <stdio.h>
+#include <stdlib.h>
+
+
 using namespace std;
 
 #include "Menu.h"
+
 #include "../gestoreDispositivo/gestoreDispositivo.h"
 //#include "../Dispositivo/Allarme.h"
 //#include "../Dispositivo/SensoreRaggInfrarossi.h"
@@ -29,27 +34,29 @@ bool Menu::getnext() {
 
 }
 
-string Menu::showMenu() {
+void Menu::showMenu() {
 	while (next) {
-		cout << "-----   MENU  ------\n\n";
+		cout << "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n";
+		cout << "%%%                                               %%%\n";
+		cout << "%%%     1) Aggiungere un dispositivo.             %%%\n";
+		cout << "%%%     2) Rimuovi un dispositvo.                 %%%\n";
+		cout << "%%%     3) Stampare lista dispositivi.            %%%\n";
+		cout << "%%%     4) Stampare lista dispositivi accesi.     %%%\n";
+		cout << "%%%     5) Accendi un dispositvo.                 %%%\n";
+		cout << "%%%     6) Spegni un dispositvo.                  %%%\n";
+		cout << "%%%     7) Spegni tutti i dispositivi.            %%%\n";
+		cout << "%%%     8) Simula movimento.                      %%%\n";
+		cout << "%%%     9) Simula suono Allarme                   %%%\n";
+		cout << "%%%     0) uscita dal progrmma                    %%%\n";
+		cout << "%%%                                               %%%\n";
+		cout << "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n";
 
-		cout << "1) Aggiungere un dispositivo.\n";
-		cout << "2) Rimuovi un dispositvo.\n";
-		cout << "3) Stampare lista dispositivi.\n";
-		cout << "4) Stampare lista dispositivi accesi.\n";
-		cout << "5) Accendi un dispositvo.\n";
-		cout << "6) Spegni un dispositvo.\n";
-		cout << "7) Spegni tutti i dispositivi.\n";
-		cout << "8) Simula movimento.\n";
-		cout << "9) Simula suono Allarme\n";
-		cout << "0) uscita dal progrmma\n";
-		cout << "\nImmettere scelta...";
+		cout << "\n       Immettere scelta  ->  ";
 		cin >> scelta;
 		cout << endl<<endl;
 
 		switch (scelta) {
 		case 0:
-			cout << "CHIUSURA PROGRAMMA...";
 			next = false;
 			break;
 		case 1:
@@ -181,5 +188,14 @@ void Menu::caso9() {
 	cout<<"Quale suono allarme vuoi simulare? (se non si ricorda l'ID faccia prima una stampa)";
 	cin>>id;
 	GestoreSicurezza::instance().AemettiSuono(id);
+}
+
+void Menu::stampaInizio(){
+	cout << "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n";
+	cout << "%%%                                               %%%\n";
+	cout << "%%% SOFTWARE DI GESTIONE DISPOSITIVI DI SICUREZZA %%%\n";
+	cout << "%%%                                               %%%\n";
+	cout << "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n";
+
 }
 
