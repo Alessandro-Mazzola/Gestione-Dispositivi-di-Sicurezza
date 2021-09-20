@@ -195,7 +195,7 @@ void Menu::caso8() {
 }
 
 void Menu::caso9() {
-	cout<<"Quale suono allarme vuoi simulare? (se non si ricorda l'ID faccia prima una stampa)";
+	cout<<"Quale allarme vuoi simulare? (se non si ricorda l'ID faccia prima una stampa)";
 	cin>>id;
 	GestoreSicurezza::instance().AemettiSuono(id);
 }
