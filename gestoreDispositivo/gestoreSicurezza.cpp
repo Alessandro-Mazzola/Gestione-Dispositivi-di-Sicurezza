@@ -37,7 +37,7 @@ vector<DispositivoSicurezza*> GestoreSicurezza::getvettDispositivi() {
 
 DispositivoSicurezza* GestoreSicurezza::cercaOggetto(string s){
 	DispositivoSicurezza* temp;
-	for (std::vector<DispositivoSicurezza*>::iterator it = vettDispositivi.begin(); it != vettDispositivi.end(); ++it)
+	for (vector<DispositivoSicurezza*>::iterator it = vettDispositivi.begin(); it != vettDispositivi.end(); ++it)
 			if ((*it)->getID() == s)
 				temp = *it;
 			return temp;
